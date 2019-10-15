@@ -22,10 +22,10 @@
         <div class="card-body">
             <form role="form">
                 <h3 class="user-name">Name:</h3>
-                <input type="text" id="Input-name">
+                <input type="text" id="name">
 
                 <h3 class="user-name">Photo:</h3>
-                <input type="url" id="Input-picture">
+                <input type="url" id="picture">
 
                 <div class="form-group">
                     <label for="reserve-name">How good was Toy Story 2</label>
@@ -167,8 +167,8 @@
         $(".submit").on("click", function (event) {
             event.preventDefault;
             var findingFriend = {
-                name: $(Input-name).val(),
-                photo: $(Input-picture).val(),
+                name: $(name).val(),
+                photo: $(picture).val(),
                 scores: [
                     $(Q1).val(),
                     $(Q2).val(),
@@ -184,9 +184,9 @@
             }
 
             $.post("/api/friends", findingFriend, function (data) {
-                $(".modal-body").text(data.friend);
-                var image = "<img width='300px' src='" + data.photo + "' alt='person'";
-                $("#modal-body").append($(image));
+                $(".modal-body").text(data.friend + " is your new friend!");
+                var image = "<img width='200px' src='" + data.photo + "' alt='person'";
+                $(".modal-body").html($(image));
             })
         })
 
